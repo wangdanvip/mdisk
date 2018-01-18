@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>美的云盘系统后台</title>
+  <link rel="stylesheet" href="static/css/bootstrap.min.css" type="text/css">
+  <script src="static/js/aes.js"></script>
+</head>
+<body id="admin_body">
+  <div id="app_box">
+      <App></App>
+  </div>
+  <div class="v-modal" style="display:none; z-index: 8;position: fixed;left: 0;top: 0;width: 100%;height: 100%;opacity: .5;background: #000;"></div>
+</body>
+</html>
+<script>
+  var obj_vue;
+  var obj=document.getElementsByTagName("html")[0];
+  obj.onclick=function(){
+    if(obj_vue!==undefined){
+      obj_vue.$data.show_filter=false;
+    }
+  }
+</script>
+<style>
+  ::-ms-clear, ::-ms-reveal
+  {
+    display:none;
+  }
+</style>

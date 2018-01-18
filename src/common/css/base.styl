@@ -1,0 +1,138 @@
+body, html
+  font-family 'PingFang SC','STHertiSC-Light','HelveTica-Light', Arial, sans-serif
+*
+  box-sizing border-box
+
+html,body,#app_box
+  width 100%
+  height 100%
+  overflow auto
+  min-width 1250px
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, img, ins, kbd, q, samp, small, strike, sub, sup, tt, var, b, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, menu, nav, output, ruby, section, summary, time, mark, audio, video, input {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-weight: normal;
+  vertical-align: baseline;
+}
+.clearFix
+  display inline-block
+  &:after
+    display block
+    content "."
+    height 0
+    line-height 0
+    clear both
+    visibility hidden
+
+//div.el-message-box__wrapper > div
+//  border-radius: 2px 2px 2px 2px;
+//  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+//  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+//  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+
+.wrap_shoadow
+  padding 8px 10px
+  background: #fff;
+  display: block;
+  //border-radius: 2px 2px 2px 2px;
+  //-webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  //-moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  //box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+
+i.el-icon-iconfont.iconfont.icon-add
+  font-size 15px
+  margin-top 2px
+i.el-icon-iconfont.iconfont.icon-yichu
+  font-size 18px
+
+.el-table__body-wrapper
+  overflow-x hidden
+tr.positive-row,tr.positive-row
+  background: #fff
+tr.info-row,tr.info-row
+  background: #fafafa
+#Depart_box div.right_wrapper div.table_wrapper table tr td:nth-child(3) > div,#UserList_box div.right_wrapper div.table_wrapper table tr td:nth-child(4) > div,#CasualUser_box div.table_wrapper table tr td:nth-child(4) div
+  white-space nowrap
+.el-dialog
+  border-radius 6px
+  box-shadow: 0 5px 15px rgba(0,0,0,.5)
+.el-dialog__header
+  border-bottom: 1px solid #e5e5e5;
+  padding 15px
+.el-dialog__headerbtn
+  font-size 16px
+.el-dialog__footer
+  border-top: 1px solid #e5e5e5;
+
+
+#logAddUser>.logAddUser.el-dialog
+  width 480px
+//#logAddUser>.el-dialog>.el-dialog__body
+#logViewOwner>.logViewOwner.el-dialog
+  width 600px
+.dialogCreateGroup>div.el-dialog,.dialogUpdateGroup>div.el-dialog,.dialogAddMember>div.el-dialog,.dialogEditMember>div.el-dialog
+  width 620px!important
+
+.userList div.item_left > label > span.el-radio__label
+//#userlist span.el-radio__label
+  display none
+.hid_label>.el-radio__label
+  display none
+
+
+#no_allow .content
+  position relative
+  margin 230px auto
+  width 750px
+  height 220px
+  background url(../img/no_allow.png) no-repeat
+  font-family "Microsoft YaHei", SimHei, sans-serif
+
+.no_wrap table>tbody>tr>td>div.cell
+  white-space nowrap
+  text-overflow ellipsis
+  word-break break-all
+  overflow hidden
+
+table.el-table__body  tr  td  div.cell
+  white-space nowrap
+  text-overflow ellipsis
+  word-break break-all
+  /*overflow hidden*/
+
+#manage_table span.el-tag
+  width 45px
+  line-height 28px
+  height 28px
+  text-align center
+.el-table .cell,.el-table th, .el-table__header-wrapper
+  overflow visible
+#filter_status
+  background #fff
+  label.el-checkbox
+    display block
+    margin 8px 0px
+    padding-left 16px
+#addCasualUser>div
+  //color red
+  width 660px!important
+
+.el-tree-node__expand-icon {
+  cursor: pointer;
+  width: 0;
+  height: 0;
+  margin-left: 10px;
+  border: 7px solid transparent;
+  border-right-width: 0;
+  border-left-color: #97a8be;
+  border-left-width: 13px;
+  transform: rotate(0);
+  transition: transform .3s ease-in-out;
+}
+
+//#GroupManage_box div.el-dialog__wrapper.dialogAddMember div.el-tree-node__content span.el-tree-node__expand-icon.expanded,
+//#GroupManage_box div.el-dialog__wrapper.dialogAddMember div.el-tree-node__content span.el-tree-node__expand-icon
+//  //留着优化  树形结构点击区域
+
