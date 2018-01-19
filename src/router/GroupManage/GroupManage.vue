@@ -385,7 +385,7 @@
         'groupId_for_members':'',
         'table_members':[],
         'minCapacity':1,
-        'maxCapacity': 2048,
+        'maxCapacity': 20480,
         'create_gName':'',
         'create_capacity':5,
         'updata_gName':'',
@@ -1079,12 +1079,12 @@
       select_unit() {
         let unit = this.unit
         if (unit == 'G') {
-          this.maxCapacity = 2048
+          this.maxCapacity = 20480
           this.minCapacity = Math.ceil(this.useCapacity)
         } else {
-          this.maxCapacity = 2
+          this.maxCapacity = 20
           this.minCapacity = Math.ceil(this.useCapacity/1024)
-          this.updata_capacity > 2 && (this.updata_capacity = 2)
+          this.updata_capacity > 20 && (this.updata_capacity = 20)
         }
       },
     },

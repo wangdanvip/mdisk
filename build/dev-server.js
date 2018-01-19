@@ -84,8 +84,8 @@ var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsS
 app.use(staticPath, express.static('./static'))
 
 //rest
-app.use(require('../rest/dataCenter'))
-app.use(require('../rest/news'))
+// app.use(require('../rest/dataCenter'))
+// app.use(require('../rest/news'))
 
 module.exports = app.listen(port, function (err) {
   if (err) {

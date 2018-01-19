@@ -125,6 +125,14 @@
                 </template>
               </el-table-column>
               <el-table-column
+                prop="capacity"
+                :label="__.UserList.capacity"
+                width="100">
+                <template scope="scope">
+                  <span :title="scope.row.capacity" class="text-over" style="display:inline-block;width: 100%;">{{scope.row.capacity !=='/' ?scope.row.capacity%1024 ? `${scope.row.capacity}G` : `${scope.row.capacity/1024}T` : scope.row.capacity}}</span>
+                </template>
+              </el-table-column>
+              <el-table-column
                 prop="deptName"
                 :label="__.DepartmentList.belongs_to_depart">
                 <template scope="scope">
@@ -141,10 +149,11 @@
               </el-table-column>
               <el-table-column
                 :label="__.DepartmentList.handle"
-                width="105">
+                :width="language=='en'?200:140">
                 <template scope="scope">
                   <el-button size="small" class="el-button--danger" v-if="scope.row.isLock===0" @click="setUserLock(scope.row.uid,scope.row.deptId)" :style="{width: language=='en'?'68px':''}">{{__.g.Lock}}</el-button>
                   <el-button size="small" class="el-button--primary" v-if="scope.row.isLock===1" @click="setUserUnlock(scope.row.uid,scope.row.deptId)" :style="{width: language=='en'?'68px':''}">{{__.g.Unlock}}</el-button>
+                  <el-button size="small" class="el-button--primary" v-if="scope.row.capacity !=='/' && pbAdmin.pb_admin==='0'" @click="change_capacity_show(scope.row.uName,scope.row.uid,scope.row.capacity)" :style="{width: language=='en'?'75px':''}">{{__.g.change_capacity}}</el-button>
                 </template>
               </el-table-column>
             </el-table>
@@ -162,13 +171,33 @@
           </div>
         </div>
       </div>
+
+      <el-dialog :title="__.personal_storage_management" :visible.sync="dialogFormVisible">
+        <el-row type="flex" justify="space-between" style="margin-bottom:20px">
+          <el-col :span="12">{{__.UserList.user_name}} : {{form.name}}</el-col>
+          <el-col :span="12">{{__.mip}} : {{form.mip}}</el-col>
+        </el-row>
+        <el-form :model="form">
+          <el-form-item :label="__.personal_capacity">
+            <el-input-number v-model="form.personal_capacity" :min="1"></el-input-number>
+            <el-select v-model="form.unit" style="width:60px">
+              <el-option label="G" value="G"></el-option>
+              <el-option label="T" value="T"></el-option>
+            </el-select>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="dialogFormVisible = false">{{__.cancel}}</el-button>
+          <el-button type="primary" @click="changeCapacitySave">{{__.g.save}}</el-button>
+        </div>
+      </el-dialog>
     </div>>
   </div>
 </template>
 <script type="text/ecmascript-6">
   import {mapGetters, mapActions} from 'vuex'
   import lang from 'src/lang.json'
-  import { requestGetDepartManageList,requestGetUserList,requestGetUserListInit,requestUserLock,requestUserUnlock,requestDeptSearchUser,requestGetAddressbook_nouser,requestDeptSearchManage,requestCasualLock } from 'common/api/api';
+  import {requestGetDepartManageList,requestGetUserList,requestGetUserListInit,requestUserLock,requestUserUnlock,requestDeptSearchUser,requestGetAddressbook_nouser,requestDeptSearchManage,requestCasualLock ,changeCapacity} from 'common/api/api';
 
   export default {
     data(){
@@ -209,7 +238,14 @@
         'tableUserListAll':[],
         'right_main_currentPage1':1,
         'right_main_page_size':20,
-        'right_main_total': 20
+        'right_main_total': 20,
+        form:{
+          personal_capacity:1,
+          unit:'G',
+          name:'',
+          mip:''
+        },
+        dialogFormVisible:false
       })
     },
     computed:{
@@ -551,6 +587,30 @@
           });
         }).catch(() => {
         });
+      },
+      change_capacity_show(uname,uid,capacity){
+        this.form.name = uname;
+        this.form.mip = uid;
+        this.form.personal_capacity = capacity % 1024 ? capacity : capacity/1024;
+        this.form.unit = capacity % 1024 ? 'G' : 'T';
+        this.dialogFormVisible = true;
+      },
+      changeCapacitySave(){
+        let params = {
+          uid:this.form.mip,
+          capacity:this.form.unit === 'G' ? this.form.personal_capacity : this.form.personal_capacity * 1024,
+          token:this.token
+        };
+        changeCapacity(params).then(res => {
+          console.log(res);
+          if(this.data_model != 'name'){
+            this.getUserList(this.deptId);
+          } else {
+            this.submitDeptSearchUser();
+          }
+          this.msg('success', this.__.UserList.expansion_success)
+        })
+        this.dialogFormVisible = false;
       },
       reder_head(h, {column, $index}){
         let __=this.__;

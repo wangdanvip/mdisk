@@ -263,3 +263,8 @@ export const updateDeptAdmin = params => {
 export const getLoginInfo = params => {
   return axios.post(`${base}/v1/mideastore/service/is/manager`, params, {id: '185', time: (new Date()).getTime()}).then(res => res.data)
 }
+
+//12.3.4	用户容量扩容
+export const changeCapacity = params => {
+  return axios.post(`${base}/v1/mideastore/service/user/update/capacity `, params, {id: '185', time: (new Date()).getTime()}).then(res => res.data)
+}
