@@ -20,7 +20,7 @@
             <!--<p>正式环境将不再显示。</p>-->
           <!--</div>-->
         <!--</div>-->
-        <el-menu theme="dark" :default-active="activeIndex" class="el-meu-demo" mode="horizontal">
+        <el-menu theme="dark" :default-active="activeIndex" mode="horizontal">
           <el-submenu index="0" v-show="pbAdmin.pb_admin == '0'">
             <template slot="title">{{i18n.data_center}}</template>
             <el-menu-item index="0-1">
@@ -73,7 +73,7 @@
               </router-link>
             </el-menu-item>
           </el-submenu>
-          <el-menu-item index="4" v-show="pbAdmin.pb_admin == '0'">
+          <el-menu-item index="4" v-show="pbAdmin.pb_admin == '0'" style="margin-top:-2px;">
             <router-link :to="{name: 'news'}">
               <span>{{i18n.news}}</span>
             </router-link>
@@ -269,6 +269,7 @@
     background-color #373d41
   .el-menu-item
     padding 0!important
+    min-width :115px !important
   .el-dropdown-menu__item
     padding 0
   #beta_tip
